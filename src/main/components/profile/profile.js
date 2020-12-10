@@ -1,9 +1,8 @@
-import React from 'react'
-import './App.css';
-import './css/homepage.css';
-import shobhit from './public/images/shobhit.png'
+import React from 'react';
+import '../../../css/profile/profile.css';
+import shobhit from '../../../public/images/shobhit.png';
 
-class App extends React.Component {
+class Profile extends React.Component {
 
     // constructor(props) {
     //   super(props);
@@ -67,4 +66,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default Profile;

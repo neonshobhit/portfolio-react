@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Nerko+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+a {
+    text-decoration: none;
+}
+
+.homepage-background {
+    background-color: #000000;
+    color: #d10f0f;
+    display: flex;
+    min-height: 98vh;
+    text-align: left;
+}
+
+.header {
+    margin-left: 30vmin;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    display: flex;
+}
+
+.header-title {
+    font-family: 'Indie Flower', cursive;
+    font-size: 10vmin;
+    margin: 0px;
+    color: #d10f0f;
+}
+
+.header-greet {
+    font-family: 'Lobster', cursive;
+    font-size: 12vmin;
+    margin: 0px;
+    color: #f0f8ff;
+}
+
+.header-greet:after {
+    content: 'Hi !!'
+}
+.header-greet:hover::after {
+    content: 'About ';
+    color: #9400D3;
+}
+
+.line-one:after {
+    content: "I'm";
+}
+.line-one:hover::after {
+    content: "Contact";
+    color: #4B0082;
+}
+
+.line-two:after {
+    content: "Shobhit";
+}
+.line-two:hover::after {
+    content: "Projects";
+    color: #0000FF;
+}
+
+.line-three:after {
+    content: "Maheshwari";
+}
+.line-three:hover::after {
+    content: "Blogs";
+    color: #008000;
+}
+
+.header-title:hover::after, .header-greet:hover::after {
+    -webkit-transition: all 0.46s ease-in-out;
+    -moz-transition: all 0.46s ease-in-out;
+    -o-transition: all 0.46s ease-in-out;
+    transition: all 0.46s ease-in-out;
+    margin-left: 5vmin;
+}
+
+
+
+.image-controller {
+    position: absolute;
+    right: 0;
+    bottom: 2vh;
+}
+
+.logo {
+    width: 30rem;
+    height: 30rem;
+}
