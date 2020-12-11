@@ -4,15 +4,17 @@ import Journey from './components/journey/Journey';
 import '../css/homepage.css'
 
 class App extends React.Component {
+    componentDidMount() {
+        document.title = "neonshobhit"
+    }
     render() {
         return (
-            <div>
+            <>
                 <Profile />
                 <div className="journey-center">
                     <Journey />
                 </div>
-
-            </div>
+            </>
         )
     }
 }

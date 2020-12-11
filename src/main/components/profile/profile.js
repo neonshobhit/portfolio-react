@@ -1,7 +1,18 @@
 import React from 'react';
 import '../../../css/profile/profile.css';
+import { useMediaQuery } from 'react-responsive';
 import shobhit from '../../../public/images/shobhit.png';
 
+
+const Mobile = ({ children }) => {
+    const isMobile = useMediaQuery({ maxWidth: 767 });
+    return isMobile ? children : null;
+}
+
+const TabletOrDesktop = ({ children }) => {
+    const isMobile = useMediaQuery({ minWidth: 1224 });
+    return isMobile ? children : null;
+}
 class Profile extends React.Component {
 
     // constructor(props) {
@@ -13,15 +24,18 @@ class Profile extends React.Component {
     //     element.scrollIntoView({behavior: "smooth"})
     // }
 
+
+
     render() {
         return (
             <div>
+
                 <div className='homepage-background' >
 
                     <div className='header'>
 
                         <div className='head'>
-                            
+
                             <a href="#lorem">
                                 <h1 className="header-greet">
                                 </h1>
@@ -47,11 +61,14 @@ class Profile extends React.Component {
                         </div>
 
                     </div>
+                    <TabletOrDesktop>
+                        <div className='image-controller'>
+                            <img src={shobhit} alt="" className="logo"/>
+                        </div>
 
-                    <div className='image-controller'>
-                        <img src={shobhit} alt="" className="logo" />
-                    </div>
-                
+                    </TabletOrDesktop>
+
+
                 </div>
                 <div id='lorem'>
                     <h1>
