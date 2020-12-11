@@ -10,8 +10,32 @@ const Mobile = ({ children }) => {
 }
 
 const TabletOrDesktop = ({ children }) => {
-    const isMobile = useMediaQuery({ minWidth: 1224 });
+    const isMobile = useMediaQuery({ minWidth: 768 });
     return isMobile ? children : null;
+}
+
+const func = () => {
+    if (!document.getElementById('tap-tap')) return
+    let text = document.getElementById('tap-tap').innerText
+    if (text !== '') {
+        document.getElementById('tap-tap').innerText = ''
+        let i=0
+        let k = document.getElementsByClassName('header-title')
+        for (let x of k) {
+            x.classList.add(`automatic${++i}`)
+        }
+        document.getElementsByClassName('header-greet')[0].classList.add('automatic0')
+    }
+    else {
+        document.getElementById('tap-tap').innerText = 'Tap here!';
+        let k = document.getElementsByClassName('header-title')
+        let i=0
+        for (let x of k) {
+            x.classList.remove(`automatic${++i}`)
+        }
+        let el = document.getElementsByClassName('header-greet')
+        el[0].classList.remove('automatic0')
+    }
 }
 class Profile extends React.Component {
 
@@ -31,10 +55,21 @@ class Profile extends React.Component {
             <div>
 
                 <div className='homepage-background' >
+                    <Mobile>
+                        <div className='image-controller-mob'>
+                            <img src={shobhit} alt="" className="logo-mob" />
+                        </div>
+                    </Mobile>
 
-                    <div className='header'>
+                    <div className='header' onClick={func}>
+                        <Mobile>
+                            <p id="tap-tap" >
+                                Tap here!
+                            </p>
+                        </Mobile>
 
-                        <div className='head'>
+
+                        <div className='head' >
 
                             <a href="#lorem">
                                 <h1 className="header-greet">
@@ -63,7 +98,7 @@ class Profile extends React.Component {
                     </div>
                     <TabletOrDesktop>
                         <div className='image-controller'>
-                            <img src={shobhit} alt="" className="logo"/>
+                            <img src={shobhit} alt="" className="logo" />
                         </div>
 
                     </TabletOrDesktop>

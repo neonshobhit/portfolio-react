@@ -5,7 +5,7 @@ import useStyles from "./style";
 
 const Bar = ({ mini, maxi }) => {
   let marks;
-  if (mini == maxi) {
+  if (mini === maxi) {
     marks = [{ value: mini, label: mini }];
   } else {
     marks = [{ value: mini, label: mini }];

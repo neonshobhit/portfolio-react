@@ -41,7 +41,7 @@ a {
 .header-greet:after {
     content: 'Hi !!'
 }
-.header-greet:hover::after {
+.automatic0, .header-greet:hover::after {
     content: 'About ';
     color: #9400D3;
 }
@@ -49,7 +49,7 @@ a {
 .line-one:after {
     content: "I'm";
 }
-.line-one:hover::after {
+.automatic1, .line-one:hover::after {
     content: "Contact";
     color: #4B0082;
 }
@@ -57,7 +57,7 @@ a {
 .line-two:after {
     content: "Shobhit";
 }
-.line-two:hover::after {
+.automatic2, .line-two:hover::after {
     content: "Projects";
     color: #0000FF;
 }
@@ -65,12 +65,12 @@ a {
 .line-three:after {
     content: "Maheshwari";
 }
-.line-three:hover::after {
+.automatic3, .line-three:hover::after {
     content: "Blogs";
     color: #008000;
 }
 
-.header-title:hover::after, .header-greet:hover::after {
+.automatic0, .automatic1, .automatic2, .automatic3, .header-title:hover::after, .header-greet:hover::after {
     -webkit-transition: all 0.46s ease-in-out;
     -moz-transition: all 0.46s ease-in-out;
     -o-transition: all 0.46s ease-in-out;
@@ -84,7 +84,6 @@ a {
     position: absolute;
     right: 0;
     bottom: 2vh;
-    
 }
 
 .logo {
@@ -94,6 +93,45 @@ a {
     width: 30rem;
     height: 30rem;
     display: block;
-    
-    
+}
+
+.image-controller-mob {
+    position: absolute;
+    left: 35%;
+    top: 2vh;
+}
+
+.logo-mob {
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    width: 10rem;
+    height: 10rem;
+    display: block;
+}
+
+@media only screen and (max-width: 767px) {
+    .logo {
+        width: 10rem;
+        height: 10rem;
+    }
+    .header-title {
+        font-size: 10vmin;
+    }
+    .header-greet {
+        font-size: 12vmin;
+    }
+    .header {
+        margin-left: 10vmin;
+        align-items: flex-end;
+        justify-content: flex-end;
+        flex-direction: column;
+        display: flex;
+        z-index: 1;
+    }
+    .image-controller {
+        position: absolute;
+        top: 10vh;
+        left: 30%;
+    }
 }
