@@ -1,68 +1,59 @@
 import React, { useState } from "react";
-import { MobileStepper, Typography, Button } from "@material-ui/core";
 import useStyles from "./style";
+import { useTheme } from "@material-ui/core/styles";
+import { MobileStepper, Typography, Button } from "@material-ui/core";
+import SwipeableViews from "react-swipeable-views";
 import Bar from "./Bar";
+import { KeyboardArrowLeft, KeyboardArrowRight } from "@material-ui/icons";
 
-let mapi = {};
 const journey = [
-  { from: 2016, work: "Done My 8th." },
-  { from: 2017, work: "Done My 10th." },
-  { from: 2018, work: "Done My 12th." },
-  { from: 2019, work: "Done My College." },
-  { from: 2020, work: "Working As a Full Stack Developer." }
+  { from: 2020, to: 2022, work: "Working As a Full Stack Developer." },
+  { from: 2019, to: 2019, work: "Done My College." },
+  { from: 2018, to: 2018, work: "Done My 12th." },
+  { from: 2017, to: 2017, work: "Done My 10th." },
+  { from: 2016, to: 2016, work: "Done My 8th." }
 ];
-let minimum = 34567;
-
-const marks = journey.map((jr, index) => {
-  if (minimum > jr["from"]) minimum = jr["from"];
-  mapi[jr["from"]] = index;
-  return { value: jr["from"], label: jr["from"] };
-});
 
 const Journey = () => {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = useState(mapi[minimum]);
-  const [value, setValue] = useState(minimum);
+  const theme = useTheme();
+  const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setValue(value + 1);
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    setValue(value - 1);
   };
-  const handleChange = (event, value) => {
-    setActiveStep(mapi[value]);
-    setValue(value);
+
+  const handleStepChange = (step) => {
+    setActiveStep(step);
   };
 
   return (
     <>
-      <Typography
-        variant="h5"
-        color="textPrimary"
-        className={classes.journeyText}
-      >
+      <Typography variant="h4" className={classes.jouneyText}>
         My Journey
       </Typography>
       <div className={classes.root}>
-        <Bar
-          handleChange={handleChange}
-          min={minimum}
-          value={value}
-          marks={marks}
-        />
-
-        <Typography
-          variant="h5"
-          color="textPrimary"
-          className={classes.typoText}
+        <SwipeableViews
+          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+          index={activeStep}
+          onChangeIndex={handleStepChange}
+          enableMouseEvents
         >
-          {journey[activeStep]["work"]}
-        </Typography>
-
+          {journey.map((step, index) => (
+            <div key={index}>
+              <Bar mini={step["from"]} maxi={step["to"]} />
+              {Math.abs(activeStep - index) <= 2 ? (
+                <Typography variant="h5" className={classes.typoText}>
+                  {step["work"]}
+                </Typography>
+              ) : null}
+            </div>
+          ))}
+        </SwipeableViews>
         <MobileStepper
           steps={journey.length}
           position="static"
@@ -75,6 +66,11 @@ const Journey = () => {
               disabled={activeStep === journey.length - 1}
             >
               Next
+              {theme.direction === "rtl" ? (
+                <KeyboardArrowLeft />
+              ) : (
+                <KeyboardArrowRight />
+              )}
             </Button>
           }
           backButton={
@@ -83,6 +79,11 @@ const Journey = () => {
               onClick={handleBack}
               disabled={activeStep === 0}
             >
+              {theme.direction === "rtl" ? (
+                <KeyboardArrowRight />
+              ) : (
+                <KeyboardArrowLeft />
+              )}
               Back
             </Button>
           }
